@@ -180,3 +180,22 @@ firstGameContainer.append(firstGame.name, firstP);
 // do the same for the runner up item
 let secondP = document.createElement("p");
 secondGameContainer.append(secondGame.name, secondP);
+
+/************************************************************************************
+ * Filter game list by name
+ */
+function filterNameGames(e) {
+  deleteChildElements(gamesContainer);
+  let filteredList = GAMES_JSON;
+  const val = e.target.value;
+  if (val != null) {
+    filteredList = GAMES_JSON.filter((game) => {
+      return game.name.toLowerCase().includes(val.toLowerCase());
+    });
+  }
+  addGamesToPage(filteredList);
+}
+
+document
+  .getElementById("filterInput")
+  .addEventListener("input", filterNameGames);
